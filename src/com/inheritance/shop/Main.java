@@ -11,7 +11,7 @@ public class Main {
                 22, false);
 
         System.out.println(sumsung.GetInfo());
-        System.out.println(sumsung12.getSuperINFO());
+
     }
 
 }
