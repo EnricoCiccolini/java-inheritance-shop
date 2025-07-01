@@ -30,4 +30,10 @@ public class Smartphone extends Prodotto {
         return this.memoria;
     }
 
+    @Override
+    public String getInfo() {
+
+        return super.getInfo() + " conuna memoria di  " + memoria + "il cui codice imei è" + codiceImei;
+    }
+
 }

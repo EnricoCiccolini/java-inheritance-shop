@@ -28,4 +28,13 @@ public class Cuffie extends Prodotto {
         return isWireless;
     }
 
+    @Override
+    public String getInfo() {
+        String frase = " non sono wireless";
+        if (isWireless) {
+            frase = " sono wireless";
+        }
+        return super.getInfo() + " del colore " + colore + frase;
+    }
+
 }

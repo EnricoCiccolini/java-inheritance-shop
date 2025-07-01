@@ -64,11 +64,11 @@ public class Prodotto {
 
     }
 
-    public String GetInfo() {
+    public String getInfo() {
         String result;
         BigDecimal totale = prezzo.add(iva.multiply(prezzo)).setScale(2, RoundingMode.DOWN);
-        result = "il prodotto si chiama " + this.nome + " con codice " + this.codice + "della marca " + this.marca
-                + " al prezzo di " + prezzo + "con iva di " + iva.setScale(2, RoundingMode.DOWN)
+        result = "il prodotto si chiama " + this.nome + " con codice " + this.codice + " della marca " + this.marca
+                + " al prezzo di " + prezzo + " con iva di " + iva.setScale(2, RoundingMode.DOWN)
                 + " prezzo comprensico di iva " + totale;
 
         return result;

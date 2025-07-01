@@ -30,4 +30,13 @@ public class Televisore extends Prodotto {
         return isSmart;
     }
 
+    @Override
+    public String getInfo() {
+        String frase = " non è smart";
+        if (isSmart) {
+            frase = "è smart";
+        }
+        return super.getInfo() + " di " + pollici + "pollici" + frase;
+    }
+
 }
