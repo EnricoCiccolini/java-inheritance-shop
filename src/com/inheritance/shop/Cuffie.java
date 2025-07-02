@@ -1,6 +1,7 @@
 package com.inheritance.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Cuffie extends Prodotto {
 
@@ -35,6 +36,22 @@ public class Cuffie extends Prodotto {
             frase = " sono wireless";
         }
         return super.getInfo() + " del colore " + colore + frase;
+    }
+
+    @Override
+    public BigDecimal prezzoScontato(boolean tessera) {
+        if (tessera && !isWireless) {
+            BigDecimal scontone = new BigDecimal(0.07);
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(scontone)).setScale(2,
+                    RoundingMode.DOWN);
+            return totale;
+        } else {
+
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(sconto)).setScale(2,
+                    RoundingMode.DOWN);
+            return totale;
+        }
+
     }
 
 }

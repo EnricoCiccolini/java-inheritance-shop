@@ -8,11 +8,29 @@ public class Carrello {
         boolean continua = true;
         Scanner shop = new Scanner(System.in);
         Prodotto[] carrelloProdotti = new Prodotto[0];
+        BigDecimal totalecarrello = BigDecimal.ZERO;
+        boolean tessera = false;
 
         while (continua) {
             String type = "";
             boolean controlloProdotto = true;
             Prodotto nuovo = null;
+
+            boolean checkTessera = true;
+            while (checkTessera) {
+                System.out.println("hai la tessera? si o no");
+                String check;
+                check = shop.nextLine().toLowerCase().trim();
+                if (check.equals("si")) {
+                    tessera = true;
+                    checkTessera = false;
+                } else if (check.equals("no")) {
+                    tessera = false;
+                    checkTessera = false;
+                } else {
+                    System.out.println("inserisci un valore valido");
+                }
+            }
 
             while (controlloProdotto) {
                 System.out.println("ciao cosa vuoi aggiungere al carrello ? cuffie, smartphone o televisore?");
@@ -64,10 +82,14 @@ public class Carrello {
         System.out.println("---------------------------------------------------------------------");
 
         System.out.println(carrelloProdotti.length);
+
         for (Prodotto prodotto : carrelloProdotti) {
             System.out.println(prodotto.getInfo());
+            totalecarrello = totalecarrello.add(prodotto.prezzoScontato(tessera));
+
         }
 
+        System.out.println("il totale è " + totalecarrello);
         shop.close();
     }
 
@@ -78,8 +100,8 @@ public class Carrello {
         String marca;
         BigDecimal prezzo;
         BigDecimal iva;
-        String codiceImei;
-        int memoria;
+        String colore;
+        boolean isWireless;
 
         System.out.println("dammi il codice ");
         codice = shop.nextInt();
@@ -94,13 +116,12 @@ public class Carrello {
         System.out.println("dammi l iva ");
         iva = shop.nextBigDecimal();
         shop.nextLine();
-        System.out.println("dammi la memoria ");
-        memoria = shop.nextInt();
-        shop.nextLine();
         System.out.println("dammi il colore ");
-        codiceImei = shop.nextLine();
+        colore = shop.nextLine();
+        System.out.println("dammi se sono wireles  ");
+        isWireless = shop.nextBoolean();
 
-        Smartphone add = new Smartphone(codice, nome, marca, prezzo, iva, codiceImei, memoria);
+        Cuffie add = new Cuffie(codice, nome, marca, prezzo, iva, colore, isWireless);
         return add;
     }
 

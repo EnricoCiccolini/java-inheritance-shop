@@ -7,8 +7,9 @@ public class Prodotto {
     private int codice;
     private String nome;
     private String marca;
-    private BigDecimal prezzo;
-    private BigDecimal iva;
+    protected BigDecimal prezzo;
+    protected BigDecimal iva;
+    protected BigDecimal sconto;
 
     public Prodotto(int codice, String nome, String marca, BigDecimal prezzo, BigDecimal iva) {
         this.codice = codice;
@@ -16,6 +17,8 @@ public class Prodotto {
         this.marca = marca;
         this.prezzo = prezzo;
         this.iva = iva;
+        this.sconto = new BigDecimal(0.02);
+
     }
 
     // private void setCodice(int codice) {
@@ -61,6 +64,18 @@ public class Prodotto {
     public BigDecimal PrezzoConIva() {
         BigDecimal totale = prezzo.add(iva.multiply(prezzo));
         return totale;
+
+    }
+
+    public BigDecimal prezzoScontato(boolean tessera) {
+        if (tessera) {
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(sconto)).setScale(2,
+                    RoundingMode.DOWN);
+            return totale;
+        } else {
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).setScale(2, RoundingMode.DOWN);
+            return totale;
+        }
 
     }
 

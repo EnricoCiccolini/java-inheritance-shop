@@ -1,6 +1,7 @@
 package com.inheritance.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Televisore extends Prodotto {
 
@@ -39,4 +40,19 @@ public class Televisore extends Prodotto {
         return super.getInfo() + " di " + pollici + "pollici" + frase;
     }
 
+    @Override
+    public BigDecimal prezzoScontato(boolean tessera) {
+        if (tessera && !isSmart) {
+            BigDecimal scontone = new BigDecimal(0.10);
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(scontone)).setScale(2,
+                    RoundingMode.DOWN);
+            return totale;
+        } else {
+
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(sconto)).setScale(2,
+                    RoundingMode.DOWN);
+            return totale;
+        }
+
+    }
 }

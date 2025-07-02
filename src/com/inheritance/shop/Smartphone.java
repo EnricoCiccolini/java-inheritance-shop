@@ -1,6 +1,7 @@
 package com.inheritance.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Smartphone extends Prodotto {
 
@@ -36,4 +37,19 @@ public class Smartphone extends Prodotto {
         return super.getInfo() + " conuna memoria di  " + memoria + "il cui codice imei è" + codiceImei;
     }
 
+    @Override
+    public BigDecimal prezzoScontato(boolean tessera) {
+        if (tessera && memoria < 32) {
+            BigDecimal scontone = new BigDecimal(0.05);
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(scontone)).setScale(2,
+                    RoundingMode.DOWN);
+            return totale;
+        } else {
+
+            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(sconto)).setScale(2,
+                    RoundingMode.DOWN);
+            return totale;
+        }
+
+    }
 }
