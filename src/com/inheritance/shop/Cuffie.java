@@ -45,12 +45,8 @@ public class Cuffie extends Prodotto {
             BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(scontone)).setScale(2,
                     RoundingMode.DOWN);
             return totale;
-        } else {
-
-            BigDecimal totale = prezzo.add(iva.multiply(prezzo)).subtract(prezzo.multiply(sconto)).setScale(2,
-                    RoundingMode.DOWN);
-            return totale;
         }
+        return super.prezzoScontato(tessera);
 
     }
 
