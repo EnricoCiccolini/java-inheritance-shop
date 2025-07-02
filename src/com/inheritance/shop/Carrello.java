@@ -10,6 +10,7 @@ public class Carrello {
         Prodotto[] carrelloProdotti = new Prodotto[0];
         BigDecimal totalecarrello = BigDecimal.ZERO;
         boolean tessera = false;
+        String[] fidelityCard = { "1234", "ciao", "prova2" };
 
         while (continua) {
             String type = "";
@@ -22,8 +23,27 @@ public class Carrello {
                 String check;
                 check = shop.nextLine().toLowerCase().trim();
                 if (check.equals("si")) {
-                    tessera = true;
-                    checkTessera = false;
+                    // inizio ciclo per controllo della tessera
+
+                    System.out.println("inserisci il codice della carta");
+                    String cartacodice;
+                    cartacodice = shop.nextLine().toLowerCase().trim();
+                    for (String string : fidelityCard) {
+                        if (string.equals(cartacodice)) {
+
+                            tessera = true;
+                            checkTessera = false;
+                        }
+
+                    }
+                    if (checkTessera) {
+                        System.out.println("scheda non valida");
+                    } else {
+                        System.out.println("tessera sconto riconosiuta");
+                    }
+
+                    // -------------------------------------
+
                 } else if (check.equals("no")) {
                     tessera = false;
                     checkTessera = false;
