@@ -18,9 +18,9 @@ public class Prodotto {
         this.iva = iva;
     }
 
-    private void setCodice(int codice) {
-        this.codice = codice;
-    }
+    // private void setCodice(int codice) {
+    // this.codice = codice;
+    // }
 
     public int getCodice() {
         return this.codice;

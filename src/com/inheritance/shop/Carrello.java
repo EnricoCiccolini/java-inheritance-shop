@@ -19,100 +19,17 @@ public class Carrello {
                 type = shop.nextLine().toLowerCase().trim();
 
                 if (type.equals("cuffie")) {
-                    int codice;
-                    String nome;
-                    String marca;
-                    BigDecimal prezzo;
-                    BigDecimal iva;
-                    String colore;
-                    boolean isWireless;
 
-                    System.out.println("dammi il codice ");
-                    codice = shop.nextInt();
-                    shop.nextLine();
-                    System.out.println("dammi il nome ");
-                    nome = shop.nextLine();
-                    System.out.println("dammi la marca ");
-                    marca = shop.nextLine();
-                    System.out.println("dammi il prezzo ");
-                    prezzo = shop.nextBigDecimal();
-                    shop.nextLine();
-                    System.out.println("dammi l iva ");
-                    iva = shop.nextBigDecimal();
-                    shop.nextLine();
-                    System.out.println("dammi il colore ");
-                    colore = shop.nextLine();
-                    System.out.println("sono wireless ");
-                    isWireless = shop.nextBoolean();
-                    shop.nextLine();
-
-                    Cuffie add = new Cuffie(codice, nome, marca, prezzo, iva, colore, isWireless);
-                    nuovo = add;
+                    nuovo = creaCuffie(shop);
                     controlloProdotto = false;
 
                 } else if (type.equals("smartphone")) {
-                    int codice;
-                    String nome;
-                    String marca;
-                    BigDecimal prezzo;
-                    BigDecimal iva;
-                    String codiceImei;
-                    int memoria;
-
-                    System.out.println("dammi il codice ");
-                    codice = shop.nextInt();
-                    shop.nextLine();
-                    System.out.println("dammi il nome ");
-                    nome = shop.nextLine();
-                    System.out.println("dammi la marca ");
-                    marca = shop.nextLine();
-                    System.out.println("dammi il prezzo ");
-                    prezzo = shop.nextBigDecimal();
-                    shop.nextLine();
-                    System.out.println("dammi l iva ");
-                    iva = shop.nextBigDecimal();
-                    shop.nextLine();
-                    System.out.println("dammi la memoria ");
-                    memoria = shop.nextInt();
-                    shop.nextLine();
-                    System.out.println("dammi il colore ");
-                    codiceImei = shop.nextLine();
-
-                    Smartphone add = new Smartphone(codice, nome, marca, prezzo, iva, codiceImei, memoria);
+                    nuovo = creaSmartphone(shop);
                     controlloProdotto = false;
-                    nuovo = add;
 
                 } else if (type.equals("televisore")) {
-                    int codice;
-                    String nome;
-                    String marca;
-                    BigDecimal prezzo;
-                    BigDecimal iva;
-                    int pollici;
-                    boolean isSmart;
 
-                    System.out.println("dammi il codice ");
-                    codice = shop.nextInt();
-                    shop.nextLine();
-                    System.out.println("dammi il nome ");
-                    nome = shop.nextLine();
-                    System.out.println("dammi la marca ");
-                    marca = shop.nextLine();
-                    System.out.println("dammi il prezzo ");
-                    prezzo = shop.nextBigDecimal();
-                    shop.nextLine();
-                    System.out.println("dammi l iva ");
-                    iva = shop.nextBigDecimal();
-                    shop.nextLine();
-                    System.out.println("dammi i pollici ");
-                    pollici = shop.nextInt();
-                    shop.nextLine();
-                    System.out.println("dammi il colore ");
-                    isSmart = shop.nextBoolean();
-                    shop.nextLine();
-
-                    Televisore add = new Televisore(codice, nome, marca, prezzo, iva, pollici, isSmart);
-                    nuovo = add;
+                    nuovo = creaTelevisore(shop);
                     controlloProdotto = false;
 
                 } else {
@@ -150,6 +67,107 @@ public class Carrello {
         for (Prodotto prodotto : carrelloProdotti) {
             System.out.println(prodotto.getInfo());
         }
+
         shop.close();
+    }
+
+    // metodi//
+    static Prodotto creaCuffie(Scanner shop) {
+        int codice;
+        String nome;
+        String marca;
+        BigDecimal prezzo;
+        BigDecimal iva;
+        String codiceImei;
+        int memoria;
+
+        System.out.println("dammi il codice ");
+        codice = shop.nextInt();
+        shop.nextLine();
+        System.out.println("dammi il nome ");
+        nome = shop.nextLine();
+        System.out.println("dammi la marca ");
+        marca = shop.nextLine();
+        System.out.println("dammi il prezzo ");
+        prezzo = shop.nextBigDecimal();
+        shop.nextLine();
+        System.out.println("dammi l iva ");
+        iva = shop.nextBigDecimal();
+        shop.nextLine();
+        System.out.println("dammi la memoria ");
+        memoria = shop.nextInt();
+        shop.nextLine();
+        System.out.println("dammi il colore ");
+        codiceImei = shop.nextLine();
+
+        Smartphone add = new Smartphone(codice, nome, marca, prezzo, iva, codiceImei, memoria);
+        return add;
+    }
+
+    static Prodotto creaTelevisore(Scanner shop) {
+        int codice;
+        String nome;
+        String marca;
+        BigDecimal prezzo;
+        BigDecimal iva;
+        int pollici;
+        boolean isSmart;
+
+        System.out.println("dammi il codice ");
+        codice = shop.nextInt();
+        shop.nextLine();
+        System.out.println("dammi il nome ");
+        nome = shop.nextLine();
+        System.out.println("dammi la marca ");
+        marca = shop.nextLine();
+        System.out.println("dammi il prezzo ");
+        prezzo = shop.nextBigDecimal();
+        shop.nextLine();
+        System.out.println("dammi l iva ");
+        iva = shop.nextBigDecimal();
+        shop.nextLine();
+        System.out.println("dammi i pollici ");
+        pollici = shop.nextInt();
+        shop.nextLine();
+        System.out.println("dammi il colore ");
+        isSmart = shop.nextBoolean();
+        shop.nextLine();
+
+        Televisore add = new Televisore(codice, nome, marca, prezzo, iva, pollici, isSmart);
+        return add;
+
+    }
+
+    static Prodotto creaSmartphone(Scanner shop) {
+        int codice;
+        String nome;
+        String marca;
+        BigDecimal prezzo;
+        BigDecimal iva;
+        String codiceImei;
+        int memoria;
+
+        System.out.println("dammi il codice ");
+        codice = shop.nextInt();
+        shop.nextLine();
+        System.out.println("dammi il nome ");
+        nome = shop.nextLine();
+        System.out.println("dammi la marca ");
+        marca = shop.nextLine();
+        System.out.println("dammi il prezzo ");
+        prezzo = shop.nextBigDecimal();
+        shop.nextLine();
+        System.out.println("dammi l iva ");
+        iva = shop.nextBigDecimal();
+        shop.nextLine();
+        System.out.println("dammi la memoria ");
+        memoria = shop.nextInt();
+        shop.nextLine();
+        System.out.println("dammi il colore ");
+        codiceImei = shop.nextLine();
+
+        Smartphone add = new Smartphone(codice, nome, marca, prezzo, iva, codiceImei, memoria);
+        return add;
+
     }
 }
